@@ -1,71 +1,70 @@
-{
-    "zabbix_export": {
-        "version": "6.4",
-        "template_groups": [
-            {
-                "uuid": "7df96b18c230490a9a0a9e2307226338",
-                "name": "Templates"
-            }
-        ],
-        "templates": [
-            {
-                "uuid": "22de3a2a1b624358b9fb710a905e7c36",
-                "template": "MyTemplate App Zimbra",
-                "name": "MyTemplate App Zimbra",
-                "groups": [
-                    {
-                        "name": "Templates"
-                    }
-                ],
-                "discovery_rules": [
-                    {
-                        "uuid": "687786c8a2c6435bb0f32f094b121402",
-                        "name": "Zimbra service discovery",
-                        "key": "zimbra.discovery",
-                        "delay": "3600",
-                        "item_prototypes": [
-                            {
-                                "uuid": "c5a8956016274e6386979de3c9e0b168",
-                                "name": "ZIMBRASERVICE status",
-                                "key": "zimbra.status.[{#ZIMBRASERVICE}]",
-                                "delay": "120",
-                                "valuemap": {
-                                    "name": "Service state"
-                                },
-                                "tags": [
-                                    {
-                                        "tag": "Application",
-                                        "value": "Zimbra service status"
-                                    }
-                                ],
-                                "trigger_prototypes": [
-                                    {
-                                        "uuid": "638c7586177640bba06359271c65f7f1",
-                                        "expression": "last(/MyTemplate App Zimbra/zimbra.status.[{#ZIMBRASERVICE}])=0",
-                                        "name": "Zimbra service ({#ZIMBRASERVICE}) is not running on {HOSTNAME}"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "valuemaps": [
-                    {
-                        "uuid": "6d01b62b928e4b559c6dcfcb0e181edf",
-                        "name": "Service state",
-                        "mappings": [
-                            {
-                                "value": "0",
-                                "newvalue": "Down"
-                            },
-                            {
-                                "value": "1",
-                                "newvalue": "Up"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.4</version>
+    <template_groups>
+        <template_group>
+            <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
+            <name>Templates</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>22de3a2a1b624358b9fb710a905e7c36</uuid>
+            <template>MyTemplate App Zimbra</template>
+            <name>MyTemplate App Zimbra</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>687786c8a2c6435bb0f32f094b121402</uuid>
+                    <name>Zimbra service discovery</name>
+                    <key>zimbra.discovery</key>
+                    <delay>3600</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>c5a8956016274e6386979de3c9e0b168</uuid>
+                            <name>ZIMBRASERVICE status</name>
+                            <key>zimbra.status.[{#ZIMBRASERVICE}]</key>
+                            <delay>120</delay>
+                            <valuemap>
+                                <name>Service state</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Zimbra service status</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>638c7586177640bba06359271c65f7f1</uuid>
+                                    <expression>last(/MyTemplate App Zimbra/zimbra.status.[{#ZIMBRASERVICE}])=0</expression>
+                                    <name>Zimbra service ({#ZIMBRASERVICE}) is not running on {HOSTNAME}</name>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <valuemaps>
+                <valuemap>
+                    <uuid>6d01b62b928e4b559c6dcfcb0e181edf</uuid>
+                    <name>Service state</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Up</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+</zabbix_export>
